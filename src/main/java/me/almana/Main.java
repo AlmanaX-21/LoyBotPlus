@@ -3,12 +3,14 @@ package me.almana;
 import me.almana.Tickets.TicketCreator;
 import me.almana.Tickets.TicketSetup;
 import me.almana.Tickets.TicketWorking;
+import me.almana.invitetrack.InviteTracking;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Emoji;
 import net.dv8tion.jda.api.entities.Emote;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.Compression;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
@@ -32,6 +34,8 @@ public class Main {
         builder.addEventListeners(new TicketSetup());
         builder.addEventListeners(new TicketCreator());
         builder.addEventListeners(new TicketWorking());
+        builder.addEventListeners(new InviteTracking());
+        builder.enableIntents(GatewayIntent.GUILD_INVITES, GatewayIntent.GUILD_MEMBERS);
         jda = builder.build();
         jda.awaitReady();
 
